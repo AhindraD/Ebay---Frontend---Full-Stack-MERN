@@ -39,7 +39,7 @@ export default function SignUp() {
             password: data.get('password'),
             confirmPassword: data.get('confirmPassword'),
         };
-
+        //https://marketplace-ebay.herokuapp.com/
         let response = await fetch("http://localhost:8000/auth/signup", {
             method: "POST",
             headers: {
@@ -52,8 +52,8 @@ export default function SignUp() {
                 return;
             });
 
-        let respData = await response.json();
-        console.log(respData);
+        let respData = await response;
+        //console.log(respData);
     };
 
     return (
