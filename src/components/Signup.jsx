@@ -18,7 +18,7 @@ function Copyright(props) {
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                AhindraD
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -29,13 +29,27 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
+        let newUser={
+            name: data.get('firstName') + data.get('lastName'),
             email: data.get('email'),
             password: data.get('password'),
-        });
+            confirmPassword: data.get('confirmPassword'),
+        };
+
+        await fetch("http://localhost:8000/auth/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+        })
+            .catch(error => {
+                window.alert(error);
+                return;
+            });
     };
 
     return (
@@ -97,6 +111,17 @@ export default function SignUp() {
                                     label="Password"
                                     type="password"
                                     id="password"
+                                    autoComplete="new-password"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    name="confirmPassword"
+                                    label="Confirm Password"
+                                    type="password"
+                                    id="confirmPassword"
                                     autoComplete="new-password"
                                 />
                             </Grid>
