@@ -40,7 +40,7 @@ export default function LogIn() {
         };
 
 
-        await fetch("http://localhost:8000/auth/login", {
+        let response = await fetch("http://localhost:8000/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -51,6 +51,9 @@ export default function LogIn() {
                 window.alert(error);
                 return;
             });
+
+        let respData = await response.json();
+        console.log(respData);
     };
 
     return (

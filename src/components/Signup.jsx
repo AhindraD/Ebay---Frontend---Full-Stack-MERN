@@ -40,7 +40,7 @@ export default function SignUp() {
             confirmPassword: data.get('confirmPassword'),
         };
 
-        await fetch("http://localhost:8000/auth/signup", {
+        let response = await fetch("http://localhost:8000/auth/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -51,6 +51,9 @@ export default function SignUp() {
                 window.alert(error);
                 return;
             });
+
+        let respData = await response.json();
+        console.log(respData);
     };
 
     return (
