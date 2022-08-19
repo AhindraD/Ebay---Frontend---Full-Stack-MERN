@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path='/' element={<SignUp />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<LogIn />} />
         {/* <Route path='/inbox' element={<Inbox />} />
