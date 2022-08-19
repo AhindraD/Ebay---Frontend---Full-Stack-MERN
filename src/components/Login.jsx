@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+//import { Route, Routes, useNavigate } from 'react-router-dom';
+
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -28,14 +30,27 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
-    const handleSubmit = (event) => {
+export default function LogIn() {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
+        let user = {
             email: data.get('email'),
             password: data.get('password'),
-        });
+        };
+
+
+        await fetch("http://localhost:8000/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+        })
+            .catch(error => {
+                window.alert(error);
+                return;
+            });
     };
 
     return (
@@ -96,7 +111,7 @@ export default function SignIn() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/signup" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
