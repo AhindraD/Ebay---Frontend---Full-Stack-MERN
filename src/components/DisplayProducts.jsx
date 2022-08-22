@@ -25,9 +25,9 @@ export default function DisplayProducts(props) {
         <div className='display-cont'>
             <div className="nav-bar" >
                 <a href="/ads" className="home" >Home</a>
-                <a href="" className="my-Ad" >My Ads</a>
-                <a href="" className="my-interest" >Saved Ads</a>
-                <a href="" className="sold" >Sold</a>
+                <a href="/myads" className="my-Ad" >My Ads</a>
+                <a href="/myfavs" className="my-interest" >Saved Ads</a>
+                <a href="/mysold" className="sold" >Sold</a>
             </div>
 
             <div className='ad-cont'>
