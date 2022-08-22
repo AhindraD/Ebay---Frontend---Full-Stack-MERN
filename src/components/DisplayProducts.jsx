@@ -23,11 +23,20 @@ export default function DisplayProducts(props) {
 
     return (
         <div className='display-cont'>
-            {loading ? <h1>loading...</h1> :
-                ads.map((elem, indx) => {
-                    return <ProductCards key={indx} product={elem} />
-                })
-            }
+            <div className="nav-bar" >
+                <a href="/ads" className="home" >Home</a>
+                <a href="" className="my-Ad" >My Ads</a>
+                <a href="" className="my-interest" >Saved Ads</a>
+                <a href="" className="sold" >Sold</a>
+            </div>
+
+            <div className='ad-cont'>
+                {loading ? <h1>loading...</h1> :
+                    ads.map((elem, indx) => {
+                        return <ProductCards key={indx} product={elem} />
+                    })
+                }
+            </div>
         </div>
     )
 }

@@ -52,17 +52,17 @@ export default function ProductCards(props) {
             <CardMedia
                 component="img"
                 height="194"
-                image="https://source.unsplash.com/random/?product"
+                image={`https://source.unsplash.com/random/?${props.product.category.name}`}
                 alt="Product Image"
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                    Price: ${999}
+                    Price: ${props.product.price}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
+                    <FavoriteIcon /> {props.product.interestedBuyers.length}
                 </IconButton>
                 <IconButton aria-label="share">
                     <ShareIcon />
@@ -79,10 +79,10 @@ export default function ProductCards(props) {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography paragraph>
-                        Seller: {props.product.seller.name}
+                        <b> Seller: </b>{props.product.seller.name}
                     </Typography>
                     <Typography paragraph>
-                        Desc: {props.product.desc}
+                        <b>  Desc: </b>{props.product.desc}
                     </Typography>
                 </CardContent>
             </Collapse>
