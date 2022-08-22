@@ -30,7 +30,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-export default function ProductCards() {
+export default function ProductCards(props) {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -50,8 +50,8 @@ export default function ProductCards() {
                         <MoreVertIcon />
                     </IconButton>
                 }
-                title="Product Name"
-                subheader="September 14, 2016"
+                title={props.product.title}
+                subheader={props.product.createdAt}
             />
             <CardMedia
                 component="img"
@@ -61,7 +61,7 @@ export default function ProductCards() {
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                    Product Price
+                    ${props.product.price}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -83,9 +83,7 @@ export default function ProductCards() {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography variant="body2" color="text.secondary">
-                        This impressive paella is a perfect party dish and a fun meal to cook
-                        together with your guests. Add 1 cup of frozen peas along with the mussels,
-                        if you like.
+                        {props.product.desc}
                     </Typography>
                 </CardContent>
             </Collapse>

@@ -15,9 +15,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useContext } from "react";
 import UserContext from "../Contexts/UserContext";
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
-    let { } = useContext(UserContext);
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
@@ -33,6 +33,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+    let navigate = useNavigate();
+    let { user, setUser } = useContext(UserContext);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -56,6 +59,8 @@ export default function SignUp() {
             });
 
         let respData = await response;
+        setUser(() => respData);
+        navigate('/ads');
         //console.log(respData);
     };
 

@@ -14,7 +14,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Paper } from '@mui/material';
 
-//import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import UserContext from "../Contexts/UserContext";
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
     return (
@@ -32,6 +34,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LogIn() {
+    let navigate = useNavigate();
+    let { user, setUser } = useContext(UserContext);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -54,7 +59,9 @@ export default function LogIn() {
             });
 
         let respData = await response.json();
-        console.log(respData);
+        setUser(() => respData);
+        navigate('/ads');
+        //console.log(respData);
     };
 
     return (
