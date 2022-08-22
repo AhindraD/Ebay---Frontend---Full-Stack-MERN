@@ -3,19 +3,20 @@ import React, { useEffect, useState } from 'react'
 import { useContext } from "react";
 import UserContext from "../Contexts/UserContext";
 import { useNavigate } from 'react-router-dom';
-import ProductCards from './ProductCards.tsx';
+import ProductCards from './ProductCards';
 
 export default function DisplayProducts(props) {
-    let { ads, setAds } = useContext(UserContext);
+    let { ads, setAds, token } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetchData();
         async function fetchData() {
-            let resp = await fetch("http://localhost:8000/ads/show");
+            let resp = await fetch("http://localhost:8000/ads/show", { method: "GET", headers: { "Authorization": `Bearer ${token}` } });
+
             let respData = await resp.json();
             setAds(() => respData);
-            console.log(ads);
+            await console.log(ads);
             setLoading(false);
         }
     }, [])

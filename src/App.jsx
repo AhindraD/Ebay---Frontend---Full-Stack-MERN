@@ -9,9 +9,10 @@ import DisplayProducts from './components/DisplayProducts';
 function App() {
   let [user, setUser] = useState(null);
   let [ads, setAds] = useState(null);
+  let [token, setToken] = useState(null);
 
   return (
-    <UserContext.Provider value={{ user, setUser, ads, setAds }}>
+    <UserContext.Provider value={{ user, setUser, ads, setAds, token, setToken }}>
       <div className="App">
         <Routes>
           <Route path='/' element={<LogIn />} />

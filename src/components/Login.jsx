@@ -35,7 +35,7 @@ const theme = createTheme();
 
 export default function LogIn() {
     let navigate = useNavigate();
-    let { user, setUser } = useContext(UserContext);
+    let { user, setUser, token, setToken } = useContext(UserContext);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -59,9 +59,10 @@ export default function LogIn() {
             });
 
         let respData = await response.json();
-        setUser(() => respData);
+        setUser(() => respData.existingUser);
+        setToken(() => respData.accessToken);
         navigate('/ads');
-        //console.log(respData);
+        //console.log(token);
     };
 
     return (
