@@ -13,8 +13,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { useContext } from "react";
+import UserContext from "../Contexts/UserContext";
 
 function Copyright(props) {
+    let { } = useContext(UserContext);
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
