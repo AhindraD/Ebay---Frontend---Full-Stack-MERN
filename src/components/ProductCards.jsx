@@ -37,8 +37,8 @@ export default function ProductCards(props) {
         <Card sx={{ maxWidth: 345 }}>
             <CardHeader
                 avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        AD
+                    <Avatar sx={{ bgcolor: red[900] }} aria-label="recipe">
+                        {props.product.seller.name[0]}
                     </Avatar>
                 }
                 action={
@@ -79,10 +79,10 @@ export default function ProductCards(props) {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography paragraph>
-                        Seller: { }
+                        Seller: {props.product.seller.name}
                     </Typography>
                     <Typography paragraph>
-                        Desc: { }
+                        Desc: {props.product.desc}
                     </Typography>
                 </CardContent>
             </Collapse>

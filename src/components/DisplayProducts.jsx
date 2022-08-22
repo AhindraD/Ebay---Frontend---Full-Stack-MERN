@@ -16,7 +16,7 @@ export default function DisplayProducts(props) {
 
             let respData = await resp.json();
             setAds(() => respData);
-            await console.log(ads);
+            //console.log(ads);
             setLoading(false);
         }
     }, [])

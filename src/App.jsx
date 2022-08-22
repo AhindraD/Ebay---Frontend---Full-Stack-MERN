@@ -9,7 +9,7 @@ import DisplayProducts from './components/DisplayProducts';
 function App() {
   let [user, setUser] = useState(null);
   let [ads, setAds] = useState(null);
-  let [token, setToken] = useState(null);
+  let [token, setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZmRmYzJmMzhlN2RmM2Q4MDc1ZWE2NyIsImVtYWlsIjoiYWhpbmRyYUBtYWlsLmNvbSIsImlhdCI6MTY2MTE4NzU4Nn0.xDwnCJrtnDUjYBe3thPovR3FcBWexd4Txwv7g3c5UAQ');
 
   return (
     <UserContext.Provider value={{ user, setUser, ads, setAds, token, setToken }}>
