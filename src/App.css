@@ -24,7 +24,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: rgb(189, 69, 177);
-    gap: 40px;
+    gap: 2px;
     position: relative;
 }
 
@@ -48,9 +48,13 @@ body {
 }
 
 .nav-bar button {
-    padding: 3px 20px;
-    border: 3px solid white;
-    border-radius: 9px;
+    height: 100%;
+    padding: 3px 40px;
+    /* border: 3px solid white; */
+    /* border-radius: 9px; */
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+    border: none;
     font-weight: 550;
     color: white;
     background-color: inherit;
@@ -60,7 +64,11 @@ body {
     font-size: 17px;
 }
 
-.nav-bar button:hover,
+.nav-bar button:hover {
+    background-color:rgb(255, 224, 251);
+    color:rgb(192, 0, 172);
+}
+
 .nav-bar button:focus {
     background-color: white;
     color: rgb(189, 69, 177);
