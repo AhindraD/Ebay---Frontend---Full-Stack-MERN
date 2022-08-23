@@ -33,15 +33,8 @@ function App() {
           <Route path='/' element={<LogIn />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<LogIn />} />
-          <Route path='/ads' element={<DisplayProducts />} />
-          <Route path='/myads' element={<MyAd />} />
-          <Route path='/myfavs' element={<MyFavs />} />
-          <Route path='/mysold' element={<MySold />} />
-          <Route path='/addnew' element={<NewAd/>} />
-          {/* <Route path='/inbox' element={<Inbox />} />
-        <Route path='/inbox/:id' element={<Email />} />
-        <Route path='/compose' element={<Compose />} />
-        <Route path='*' element={<NoMatch />} /> */}
+          <Route path='/ads/*' element={<DisplayProducts />} /> 
+          {/* (/*) in above line : to make the /ads capable of going deeper i.e. make it a parent */}
         </Routes>
       </div >
     </UserContext.Provider>

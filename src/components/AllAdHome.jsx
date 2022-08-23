@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
 import { useContext } from "react";
 import UserContext from "../Contexts/UserContext";
 import ProductCards from './ProductCards';
 
-export default function MyFavs() {
-    let { ads, setAds, token, user } = useContext(UserContext);
+
+export default function AllAdHome(props) {
+    let { user, ads, setAds, token } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
     useEffect(() => {
         fetchData();
@@ -13,11 +14,12 @@ export default function MyFavs() {
             let resp = await fetch("http://localhost:8000/ads/show", { method: "GET", headers: { "Authorization": `Bearer ${token}` } });
 
             let respData = await resp.json();
-            setAds(() => respData.filter((elem) => elem.seller._id === user._id));
+            setAds(() => respData);
             //console.log(ads);
             setLoading(false);
         }
     }, [])
+
 
     return (
         <>

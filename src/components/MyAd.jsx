@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import { useContext } from "react";
 import UserContext from "../Contexts/UserContext";
-import { useNavigate } from 'react-router-dom';
 import ProductCards from './ProductCards';
+import { useNavigate } from 'react-router-dom';
 
 export default function MyAd() {
+    let goTo = useNavigate();
     let { ads, setAds, token, user } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
-
     useEffect(() => {
         fetchData();
         async function fetchData() {
@@ -22,22 +22,13 @@ export default function MyAd() {
     }, [])
 
     return (
-        <div className='display-cont'>
-            <div className="nav-bar" >
-                <a href="/ads" className="home" >Home</a>
-                <a href="/myads" className="my-Ad" >My Ads</a>
-                <a href="/myfavs" className="my-interest" >Saved Ads</a>
-                <a href="/mysold" className="sold" >Sold</a>
-            </div>
-            <div className='ad-cont'>
-                {loading ? <h1>loading...</h1> :
-                    ads.map((elem, indx) => {
-                        return <ProductCards key={indx} product={elem} />
-                    })
-                }
-            </div>
-
-            <a href="/addnew" className="add-ad">Add New</a>
-        </div>
+        <>
+            {loading ? <h1>loading...</h1> :
+                ads.map((elem, indx) => {
+                    return <ProductCards key={indx} product={elem} />
+                })
+            }
+            <button onClick={() => goTo("/addnew")} className="add-ad">Add New</button>
+        </>
     )
 }
