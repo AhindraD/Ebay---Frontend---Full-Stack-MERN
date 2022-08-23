@@ -14,9 +14,10 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Autocomplete from '@mui/material/Autocomplete';
 
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import UserContext from "../Contexts/UserContext";
 import { useNavigate } from 'react-router-dom';
+import { Input } from '@mui/material';
 
 function Copyright(props) {
     return (
@@ -37,6 +38,8 @@ export default function NewAd() {
     let navigate = useNavigate();
     let { user, setUser, token } = useContext(UserContext);
     let [cats, setCats] = useState([]);
+    let fileInputRef = useRef(null);
+
     useEffect(() => {
         fetchData();
         async function fetchData() {
@@ -66,14 +69,18 @@ export default function NewAd() {
             seller: user._id,
             category: getCatId(data.get('category')),
         };
+
+        data.append("seller", user._id);
+        data.append("category", newAd.category);
+        data.append("image", fileInputRef.current.files[0]);
+
         //https://marketplace-ebay.herokuapp.com/
         await fetch("http://localhost:8000/ads/new", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify(newAd),
+            body: data,
         })
             .catch(error => {
                 window.alert(error);
@@ -146,6 +153,19 @@ export default function NewAd() {
                                         name="category"
                                         label="Categories" />}
                                 />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Button variant='contained' component="label">
+                                    Upload Image
+
+                                    <input
+                                        accept="image/*"
+                                        style={{ display: 'inline' }}
+                                        id="image"
+                                        ref={fileInputRef}
+                                        type="file"
+                                    />
+                                </Button>
                             </Grid>
                             <Grid item xs={12}>
                                 <FormControlLabel
