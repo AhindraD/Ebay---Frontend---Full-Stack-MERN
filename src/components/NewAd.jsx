@@ -50,13 +50,21 @@ export default function NewAd() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        function getCatId(inpName) {
+            for (let i = 0; i < cats.length; i++) {
+                if (cats[i].name === inpName) {
+                    return cats[i]["_id"];
+                }
+            }
+            return inpName;
+        }
         const data = new FormData(event.currentTarget);
         let newAd = {
             title: data.get('title'),
             price: data.get('price'),
             desc: data.get('desc'),
             seller: user._id,
-            category: data.get('category'),
+            category: getCatId(data.get('category')),
         };
         //https://marketplace-ebay.herokuapp.com/
         await fetch("http://localhost:8000/ads/new", {
@@ -134,8 +142,8 @@ export default function NewAd() {
                                     renderInput={(params) => <TextField {...params}
                                         required
                                         fullWidth
-                                        id="categories"
-                                        name="categories"
+                                        id="category"
+                                        name="category"
                                         label="Categories" />}
                                 />
                             </Grid>
