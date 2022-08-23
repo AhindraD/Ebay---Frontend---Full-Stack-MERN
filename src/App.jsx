@@ -24,7 +24,7 @@ function App() {
     "createdAt": "2022-08-22T16:59:46.134Z"
   });
   let [ads, setAds] = useState(null);
-  let [token, setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZmRmYzJmMzhlN2RmM2Q4MDc1ZWE2NyIsImVtYWlsIjoiYWhpbmRyYUBtYWlsLmNvbSIsImlhdCI6MTY2MTE4NzU4Nn0.xDwnCJrtnDUjYBe3thPovR3FcBWexd4Txwv7g3c5UAQ');
+  let [token, setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZmRmYzJmMzhlN2RmM2Q4MDc1ZWE2NyIsImVtYWlsIjoiYWhpbmRyYUBtYWlsLmNvbSIsImlhdCI6MTY2MTI0ODczMywiZXhwIjoxNjYxMzM1MTMzfQ.yV7hTwXj4935G2TgznLoNRfoqOlk47KfF8RUGggaDK8');
 
   return (
     <UserContext.Provider value={{ user, setUser, ads, setAds, token, setToken }}>

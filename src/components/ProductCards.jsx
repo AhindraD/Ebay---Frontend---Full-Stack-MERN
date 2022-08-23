@@ -52,7 +52,7 @@ export default function ProductCards(props) {
             <CardMedia
                 component="img"
                 height="194"
-                image={`https://source.unsplash.com/random/?${props.product.category.name}`}
+                image={props.product.imageUrl == null ? `https://source.unsplash.com/random/?${props.product.category.name}` : props.product.imageUrl}
                 alt="Product Image"
             />
             <CardContent>
