@@ -8,6 +8,7 @@ import DisplayProducts from './components/DisplayProducts';
 import MyAd from './components/MyAd';
 import MySold from './components/MySold';
 import MyFavs from './components/MyFavs';
+import NewAd from './components/NewAd';
 
 function App() {
   let [user, setUser] = useState({
@@ -36,6 +37,7 @@ function App() {
           <Route path='/myads' element={<MyAd />} />
           <Route path='/myfavs' element={<MyFavs />} />
           <Route path='/mysold' element={<MySold />} />
+          <Route path='/addnew' element={<NewAd/>} />
           {/* <Route path='/inbox' element={<Inbox />} />
         <Route path='/inbox/:id' element={<Email />} />
         <Route path='/compose' element={<Compose />} />

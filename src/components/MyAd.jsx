@@ -36,6 +36,8 @@ export default function MyAd() {
                     })
                 }
             </div>
+
+            <a href="/addnew" className="add-ad">Add New</a>
         </div>
     )
 }
