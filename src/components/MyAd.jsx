@@ -34,7 +34,7 @@ export default function MyAd() {
                     return <ProductCards key={indx} product={elem} />
                 })
             }
-            <button onClick={() => goTo("/addnew")} className="add-ad">Add New</button>
+            <button onClick={() => goTo("/ads/addnew")} className="add-ad">Add New</button>
         </>
     )
 }

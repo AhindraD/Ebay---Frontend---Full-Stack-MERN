@@ -13,8 +13,8 @@ export default function MyFavs() {
         fetchData();
         async function fetchData() {
             // let resp = await fetch("http://localhost:8000/ads/show", { method: "GET", headers: { "Authorization": `Bearer ${token}` } });
-            let resp = await axiosClient.get("/ads/show")
-            let respData = await resp.data();
+            let resp = await axiosClient.get("/ads/show");
+            let respData = await resp.data;
             setAds(() => respData.filter((elem) => elem.seller._id === user._id));
             //console.log(ads);
             setLoading(false);

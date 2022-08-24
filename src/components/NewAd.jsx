@@ -19,6 +19,8 @@ import UserContext from "../Contexts/UserContext";
 import { useNavigate } from 'react-router-dom';
 import { Input } from '@mui/material';
 
+import axiosClient from '../ApiConfig';
+
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -43,9 +45,10 @@ export default function NewAd() {
     useEffect(() => {
         fetchData();
         async function fetchData() {
-            let resp = await fetch("http://localhost:8000/categories/show", { method: "GET", headers: { "Authorization": `Bearer ${token}` } });
+            // let resp = await fetch("http://localhost:8000/categories/show", { method: "GET", headers: { "Authorization": `Bearer ${token}` } });
+            let resp = await axiosClient.get("/categories/show");
 
-            let respData = await resp.json();
+            let respData = await resp.data;
             setCats(() => respData);
         }
     }, [])
@@ -86,7 +89,7 @@ export default function NewAd() {
                 window.alert(error);
                 return;
             });
-        navigate('/myads');
+        navigate('/ads/myads');
     };
 
     return (
@@ -184,9 +187,9 @@ export default function NewAd() {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="/ads" variant="body2">
+                                <Button onClick={() => navigate("/ads")} variant="body2">
                                     Back To Homepage
-                                </Link>
+                                </Button>
                             </Grid>
                         </Grid>
                     </Box>
