@@ -7,9 +7,13 @@ import ProductCards from './ProductCards';
 import axiosClient from '../ApiConfig';
 
 export default function MySold() {
-    let { ads, setAds, token, user } = useContext(UserContext);
+    let { ads, setAds, token, user,setUser } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
     useEffect(() => {
+        if (user == null) {
+            let userObj = JSON.parse(localStorage.getItem("user_data"));
+            setUser(() => userObj);
+        }
         fetchData();
         async function fetchData() {
             // let resp = await fetch("http://localhost:8000/ads/show", { method: "GET", headers: { "Authorization": `Bearer ${token}` } });

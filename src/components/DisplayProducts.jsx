@@ -15,6 +15,7 @@ import MySold from './MySold';
 import NewAd from './NewAd';
 
 export default function DisplayProducts(props) {
+    let [loading, setLoading] = useState(true);
     const StyledBadge = styled(Badge)(({ theme }) => ({
         '& .MuiBadge-badge': {
             backgroundColor: '#44b700',
@@ -27,40 +28,47 @@ export default function DisplayProducts(props) {
     let goTo = useNavigate();
     useEffect(() => {
         if (user == null) {
-            setUser(() => JSON.parse(localStorage.getItem("user_data")));
+            let userObj = JSON.parse(localStorage.getItem("user_data"));
+            setUser(() => userObj);
         }
+        setLoading(() => false);
     }, [])
 
     return (
-        <div className='display-cont'>
-            <div className="nav-bar" >
-                <p className="title">Ebay<b>Kart</b></p>
-                <button onClick={() => goTo("/ads")} className="home" >Home</button>
-                <button onClick={() => goTo("/ads/myads")} className="my-Ad" >My Ads</button>
-                <button onClick={() => goTo("/ads/myfavs")} className="my-interest" >Saved Ads</button>
-                <button onClick={() => goTo("/ads/mysold")} className="sold" >Sold</button>
-                <div className="user-name">
-                    <StyledBadge
-                        overlap="circular"
-                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                        variant="dot"
-                    >
-                        <Avatar sx={{ bgcolor: cyan[500] }} alt={user.name} src="/static/images/avatar/1.jpg" />
-                    </StyledBadge>
-                    &nbsp;
-                    &nbsp;
-                    {user.name}</div>
-            </div>
+        <>
+            {
+                loading ? <h1>Loading...</h1> :
+                    <div className='display-cont'>
+                        <div className="nav-bar" >
+                            <p className="title">Ebay<b>Kart</b></p>
+                            <button onClick={() => goTo("/ads")} className="home" >Home</button>
+                            <button onClick={() => goTo("/ads/myads")} className="my-Ad" >My Ads</button>
+                            <button onClick={() => goTo("/ads/myfavs")} className="my-interest" >Saved Ads</button>
+                            <button onClick={() => goTo("/ads/mysold")} className="sold" >Sold</button>
+                            <div className="user-name">
+                                <StyledBadge
+                                    overlap="circular"
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                                    variant="dot"
+                                >
+                                    <Avatar sx={{ bgcolor: cyan[500] }} alt={user.name} src="/static/images/avatar/1.jpg" />
+                                </StyledBadge>
+                                &nbsp;
+                                &nbsp;
+                                {user.name}</div>
+                        </div>
 
-            <div className='ad-cont'>
-                <Routes>
-                    <Route path='/' element={<AllAdHome />} />
-                    <Route path='/myads' element={<MyAd />} />
-                    <Route path='/myfavs' element={<MyFavs />} />
-                    <Route path='/mysold' element={<MySold />} />
-                    <Route path='/addnew' element={<NewAd />} />
-                </Routes>
-            </div>
-        </div>
+                        <div className='ad-cont'>
+                            <Routes>
+                                <Route path='/' element={<AllAdHome />} />
+                                <Route path='/myads' element={<MyAd />} />
+                                <Route path='/myfavs' element={<MyFavs />} />
+                                <Route path='/mysold' element={<MySold />} />
+                                <Route path='/addnew' element={<NewAd />} />
+                            </Routes>
+                        </div>
+                    </div>
+            }
+        </>
     )
 }
