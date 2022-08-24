@@ -35,7 +35,7 @@ const theme = createTheme();
 
 export default function LogIn() {
     let navigate = useNavigate();
-    let { user, setUser, token, setToken } = useContext(UserContext);
+    let { user, setUser, token, setToken, refreshToken, setRefreshToken } = useContext(UserContext);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -61,6 +61,9 @@ export default function LogIn() {
         let respData = await response.json();
         setUser(() => respData.existingUser);
         setToken(() => respData.accessToken);
+        setRefreshToken(() => respData.refreshToken);
+        localStorage.setItem("access_token", respData.accessToken);
+        localStorage.setItem("refresh_token", respData.refreshToken);
         navigate('/ads');
         //console.log(token);
     };
