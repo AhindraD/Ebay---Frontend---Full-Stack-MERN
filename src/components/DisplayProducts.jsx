@@ -23,8 +23,13 @@ export default function DisplayProducts(props) {
         },
     }));
 
-    let { user,token } = useContext(UserContext);
+    let { user, token, setUser } = useContext(UserContext);
     let goTo = useNavigate();
+    useEffect(() => {
+        if (user == null) {
+            setUser(() => JSON.parse(localStorage.getItem("user_data")));
+        }
+    }, [])
 
     return (
         <div className='display-cont'>

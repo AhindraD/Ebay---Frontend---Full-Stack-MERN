@@ -7,9 +7,12 @@ import ProductCards from './ProductCards';
 import axiosClient from '../ApiConfig';
 
 export default function AllAdHome(props) {
-    let { user, ads, setAds, token } = useContext(UserContext);
+    let { user, ads, setAds, token, setUser } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
     useEffect(() => {
+        if (user == null) {
+            setUser(() => JSON.parse(localStorage.getItem("user_data")));
+        }
         fetchData();
         async function fetchData() {
             // let resp = await fetch("http://localhost:8000/ads/show", { method: "GET", headers: { "Authorization": `Bearer ${token}` } });

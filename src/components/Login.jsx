@@ -64,6 +64,7 @@ export default function LogIn() {
         setRefreshToken(() => respData.refreshToken);
         localStorage.setItem("access_token", respData.accessToken);
         localStorage.setItem("refresh_token", respData.refreshToken);
+        localStorage.setItem("user_data", JSON.stringify(respData.existingUser));
         navigate('/ads');
         //console.log(token);
     };

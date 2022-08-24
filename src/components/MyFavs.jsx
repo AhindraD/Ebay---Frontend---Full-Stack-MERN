@@ -4,15 +4,17 @@ import { useContext } from "react";
 import UserContext from "../Contexts/UserContext";
 import ProductCards from './ProductCards';
 
+import axiosClient from '../ApiConfig';
+
 export default function MyFavs() {
     let { ads, setAds, token, user } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
     useEffect(() => {
         fetchData();
         async function fetchData() {
-            let resp = await fetch("http://localhost:8000/ads/show", { method: "GET", headers: { "Authorization": `Bearer ${token}` } });
-
-            let respData = await resp.json();
+            // let resp = await fetch("http://localhost:8000/ads/show", { method: "GET", headers: { "Authorization": `Bearer ${token}` } });
+            let resp = await axiosClient.get("/ads/show")
+            let respData = await resp.data();
             setAds(() => respData.filter((elem) => elem.seller._id === user._id));
             //console.log(ads);
             setLoading(false);
